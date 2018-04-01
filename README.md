@@ -1,6 +1,6 @@
 # HyperionVisualizer for Android
 HyperionVisualizer for Android is a simple Android app, that uses the music played on your mobile phone and visualizes it on your Hyperion using the UDP Listener
-![Visualizer](https://imgur.com/Ay4C3q4)
+![Visualizer]((https://i.imgur.com/Ay4C3q4.png)
 
 ## Features:
 * Currently the app features two visualization options, that resemble the Rainbow Mood and Rainbow Swirl effects. You can set the rate in which the colors change on your own, using a rate of 0 lets you use a static color or rainbow.  
