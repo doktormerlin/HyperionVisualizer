@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/text_permission_info"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="114dp"
+        android:textAlignment="center" />
+
+    <Button
+        android:id="@+id/btn_start_stop_visualizer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/input_visualizer_rate"
+        android:layout_alignTop="@+id/input_ip"
+        android:text="Start" />
+
+    <EditText
+        android:id="@+id/input_led_count"
+        android:layout_width="138dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignStart="@+id/input_ip"
+        android:layout_marginTop="161dp"
+        android:ems="10"
+        android:hint="LED Count"
+        android:inputType="numberSigned" />
+
+    <EditText
+        android:id="@+id/input_ip"
+        android:layout_width="227dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="23dp"
+        android:layout_marginTop="26dp"
+        android:ems="10"
+        android:hint="IP-Address"
+        android:inputType="textPersonName" />
+
+    <EditText
+        android:id="@+id/input_port"
+        android:layout_width="227dp"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/input_led_count"
+        android:layout_below="@+id/input_ip"
+        android:ems="10"
+        android:hint="UDP Port (Default: 2391)"
+        android:inputType="numberSigned" />
+
+    <EditText
+        android:id="@+id/input_visualizer_rate"
+        android:layout_width="153dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignTop="@+id/input_led_count"
+        android:layout_marginEnd="23dp"
+        android:ems="10"
+        android:hint="Rate [mHz]"
+        android:inputType="numberSigned" />
+
+    <EditText
+        android:id="@+id/input_color_rate"
+        android:layout_width="228dp"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/input_led_count"
+        android:layout_below="@+id/input_port"
+        android:ems="10"
+        android:hint="Color Switch Rate"
+        android:inputType="numberSigned|numberDecimal" />
+
+    <EditText
+        android:id="@+id/input_color_starting_offset"
+        android:layout_width="248dp"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/input_led_count"
+        android:layout_below="@+id/input_led_count"
+        android:ems="10"
+        android:hint="Color Starting offset (0-360)"
+        android:inputType="number" />
+
+    <RadioGroup
+        android:id="@+id/radiogroup_visualizer_method"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/input_led_count"
+        android:layout_below="@+id/input_color_starting_offset">
+
+        <RadioButton
+            android:id="@+id/radiobutton_single_colour"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Rainbow Mood" />
+
+        <RadioButton
+            android:id="@+id/radiobutton_rainbow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Rainbow Swirl" />
+    </RadioGroup>
+
+</RelativeLayout>

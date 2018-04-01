@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">HyperionVisualizer</string>
+    <string name="foreground_service_notification_title">HyperionVisualizer</string>
+    <string name="foreground_service_notification_message">Visualizer is running</string>
+    <string name="ticker_text">I DONT KNOW WHAT THIS IS</string>
+    <string name="button_start">Start</string>
+    <string name="button_stop">Stop</string>
+    <string name="permission_info_no_permission">You need to give this App permission to record audio.
+    If you gave permission, please restart the app.</string>
+</resources>
