@@ -1,5 +1,5 @@
 # HyperionVisualizer for Android
-HyperionVisualizer for Android is a simple Android app, that uses the music played on your mobile phone and visualizes it on your Hyperion using the UDP Listener
+HyperionVisualizer for Android is a simple Android app that uses the music played on your mobile phone and visualizes it on your Hyperion using the UDP Listener
 ![Visualizer](https://i.imgur.com/Ay4C3q4.png)
 
 ## Features:
