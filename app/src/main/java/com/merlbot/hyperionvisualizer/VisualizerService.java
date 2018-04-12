@@ -1,6 +1,8 @@
 package com.merlbot.hyperionvisualizer;
 
 import android.app.Notification;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Context;
@@ -81,6 +83,16 @@ public class VisualizerService extends Service {
         PendingIntent pendingIntent =
                 PendingIntent.getActivity(this, 0, notificationIntent, 0);
 
+
+        String channel_id = "TEST";
+        String channel_name = "TEST";
+        NotificationChannel channel = new NotificationChannel(channel_id, channel_name, NotificationManager.IMPORTANCE_NONE);
+        channel.setLightColor(Color.BLUE);
+        channel.setLockscreenVisibility(Notification.VISIBILITY_PUBLIC);
+
+        NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        notificationManager.createNotificationChannel(channel);
+
         Notification notification =
                 new Notification.Builder(this, "TEST")
                         .setContentTitle(getText(R.string.foreground_service_notification_title))
@@ -88,15 +100,20 @@ public class VisualizerService extends Service {
                         .setSmallIcon(R.drawable.icon)
                         .setContentIntent(pendingIntent)
                         .setTicker(getText(R.string.ticker_text))
+                        .setOngoing(true)
                         .build();
+        notification.flags|=Notification.FLAG_NO_CLEAR;
 
         startForeground(ONGOING_NOTIFICATION_ID, notification);
+
+
         vis = new Visualizer(0);
         MyVisualizer visListener = new MyVisualizer();
         vis.setDataCaptureListener(visListener, RATE, true, false);
         int res = vis.setEnabled(true);
         return super.onStartCommand(intent, flags, startid);
     }
+
 
     class MyVisualizer implements Visualizer.OnDataCaptureListener{
         final String TAG = "MyVisualizer";

@@ -69,6 +69,7 @@ public class MainActivity extends AppCompatActivity {
         int prefs_visualizer_rate = prefs.getInt("visualizer_rate", -1);
         float prefs_color_rate = prefs.getFloat("color_rate", -1);
         int checked_button = prefs.getInt("checked_button", R.id.radiobutton_single_colour);
+        int prefs_color_offset = prefs.getInt("color_offset", -1);
 
         if(prefs_ip_address != null){
             edittext_ip_address.setText(prefs_ip_address);
@@ -84,6 +85,9 @@ public class MainActivity extends AppCompatActivity {
         }
         if(prefs_color_rate != -1){
             edittext_color_rate.setText(String.valueOf(prefs_color_rate));
+        }
+        if(prefs_color_offset != -1){
+            editText_color_starting_offset.setText(String.valueOf(prefs_color_offset));
         }
 
         radioGroup_visualizer_method.check(checked_button);
