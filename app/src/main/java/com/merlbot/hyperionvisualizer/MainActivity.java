@@ -94,6 +94,21 @@ public class MainActivity extends AppCompatActivity {
 
         requestAudioPermissions();
 
+        edittext_ip_address.setEnabled(!isActive);
+        edittext_upd_port.setEnabled(!isActive);
+        edittext_led_count.setEnabled(!isActive);
+        edittext_visualizer_rate.setEnabled(!isActive);
+        edittext_color_rate.setEnabled(!isActive);
+        radioButton_rainbow.setEnabled(!isActive);
+        radioButton_single_color.setEnabled(!isActive);
+        editText_color_starting_offset.setEnabled(!isActive);
+
+        if(isActive){
+            btn_start_stop_visualizer.setText(R.string.button_stop);
+        }
+        else{
+            btn_start_stop_visualizer.setText(R.string.button_start);
+        }
 
         final TextView text_permission_info = findViewById(R.id.text_permission_info);
         if(!hasPermission){

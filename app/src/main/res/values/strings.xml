@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">HyperionVisualizer</string>
-    <string name="foreground_service_notification_title">HyperionVisualizer</string>
-    <string name="foreground_service_notification_message">Visualizer is running</string>
+    <string name="foreground_service_notification_title">Visualizer is running</string>
+    <string name="foreground_service_notification_message">Press here to stop it</string>
     <string name="ticker_text">I DONT KNOW WHAT THIS IS</string>
     <string name="button_start">Start</string>
     <string name="button_stop">Stop</string>

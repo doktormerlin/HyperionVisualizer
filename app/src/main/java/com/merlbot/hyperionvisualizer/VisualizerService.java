@@ -96,7 +96,7 @@ public class VisualizerService extends Service {
         Notification notification =
                 new Notification.Builder(this, "TEST")
                         .setContentTitle(getText(R.string.foreground_service_notification_title))
-                        .setContentText(getText(R.string.foreground_service_notification_title))
+                        .setContentText(getText(R.string.foreground_service_notification_message))
                         .setSmallIcon(R.drawable.icon)
                         .setContentIntent(pendingIntent)
                         .setTicker(getText(R.string.ticker_text))
