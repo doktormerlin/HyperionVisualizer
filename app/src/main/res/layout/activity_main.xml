@@ -109,4 +109,13 @@
             android:text="Rainbow Swirl" />
     </RadioGroup>
 
+    <Button
+        android:id="@+id/btn_resume"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignStart="@+id/btn_start_stop_visualizer"
+        android:layout_marginTop="87dp"
+        android:text="@string/button_resume" />
+
 </RelativeLayout>

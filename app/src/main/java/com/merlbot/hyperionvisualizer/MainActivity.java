@@ -1,9 +1,7 @@
 package com.merlbot.hyperionvisualizer;
 
 import android.Manifest;
-import android.app.Activity;
-import android.app.AlarmManager;
-import android.app.PendingIntent;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -16,6 +14,7 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -30,9 +29,13 @@ public class MainActivity extends AppCompatActivity {
     static boolean isActive = false;
     static boolean hasPermission = false;
     private static final int MY_PERMISSIONS_RECORD_AUDIO = 200;
+    private static final String TAG = "MainActiviy";
+
+    private static boolean was_started = false;
 
     static Intent visualizerIntent = null;
     Button btn_start_stop_visualizer = null;
+    Button btn_resume = null;
     EditText edittext_ip_address = null;
     EditText edittext_upd_port = null;
     EditText edittext_led_count = null;
@@ -47,8 +50,10 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        final SharedPreferences prefs = MainActivity.this.getPreferences(Context.MODE_PRIVATE);
+        //final SharedPreferences prefs = MainActivity.this.getPreferences(Context.MODE_PRIVATE);
+        final SharedPreferences prefs = MainActivity.this.getSharedPreferences("testPrefs", Context.MODE_PRIVATE);
         btn_start_stop_visualizer = findViewById(R.id.btn_start_stop_visualizer);
+        btn_resume = findViewById(R.id.btn_resume);
         edittext_ip_address = findViewById(R.id.input_ip);
         edittext_upd_port = findViewById(R.id.input_port);
         edittext_led_count = findViewById(R.id.input_led_count);
@@ -104,10 +109,14 @@ public class MainActivity extends AppCompatActivity {
         editText_color_starting_offset.setEnabled(!isActive);
 
         if(isActive){
-            btn_start_stop_visualizer.setText(R.string.button_stop);
+            btn_start_stop_visualizer.setText(R.string.button_pause);
         }
         else{
             btn_start_stop_visualizer.setText(R.string.button_start);
+            if(!was_started){
+                //btn_resume.setVisibility(View.GONE);
+                //btn_resume.setEnabled(false);
+            }
         }
 
         final TextView text_permission_info = findViewById(R.id.text_permission_info);
@@ -143,12 +152,51 @@ public class MainActivity extends AppCompatActivity {
                 visualizerIntent.putExtra("color_offset", color_offset);
 
                 if(isActive){
+
                     stopService(visualizerIntent);
-                    btn_start_stop_visualizer.setText(R.string.button_start);
+                    btn_start_stop_visualizer.setText(R.string.button_restart);
+                    btn_resume.setVisibility(View.VISIBLE);
+                    btn_resume.setEnabled(true);
                 }
                 else{
-                    startService(visualizerIntent);
-                    btn_start_stop_visualizer.setText(R.string.button_stop);
+                    ComponentName visualizerService = startService(visualizerIntent);
+                    if(visualizerService == null){
+                        Log.d(TAG, "Service not started");
+                    }else{
+                        Log.d(TAG, "Service not started");
+                    }
+                    btn_start_stop_visualizer.setText(R.string.button_pause);
+                    //btn_resume.setVisibility(View.GONE);
+                    btn_resume.setEnabled(false);
+                }
+
+                edittext_ip_address.setEnabled(isActive);
+                edittext_upd_port.setEnabled(isActive);
+                edittext_led_count.setEnabled(isActive);
+                edittext_visualizer_rate.setEnabled(isActive);
+                edittext_color_rate.setEnabled(isActive);
+                radioButton_rainbow.setEnabled(isActive);
+                radioButton_single_color.setEnabled(isActive);
+                editText_color_starting_offset.setEnabled(isActive);
+
+                isActive = !isActive;
+                was_started = true;
+
+            }
+        });
+
+        btn_resume.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent emptyvisualizerIntent = new Intent(MainActivity.this, VisualizerService.class);
+                if(isActive){
+                    stopService(emptyvisualizerIntent);
+                    btn_start_stop_visualizer.setText(R.string.button_restart);
+                }
+                else{
+                    startService(emptyvisualizerIntent);
+                    btn_start_stop_visualizer.setText(R.string.button_pause);
+                    //btn_resume.setVisibility(View.GONE);
+                    btn_resume.setEnabled(false);
                 }
 
                 edittext_ip_address.setEnabled(isActive);
